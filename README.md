@@ -6,6 +6,16 @@ YLTCPBroadcaster is a small library written in Objective-C to find every host wi
 
 The main concept behind the `YLTCPBroadcaster` is very simple. To simulate the broadcast, the library creates a  connection to every host on the network on the specified TCP port number. Then it waits for a response and in this manner it can determine whether the host is open on the given port number.
 
+## Usage
+
+```objective-c
+YLTCPBroadcaster *bc = [YLTCPBroadcaster defaultBroadcaster];
+[bc scanWithPort:8080 timeoutInterval:1.5 completionHandler:^(NSArray *hosts) {
+   // E.g.: ["192.168.0.3", "192.168.0.56", "192.168.0.87"]
+   NSLog(@"Available hosts: %@", hosts);
+}];
+```
+
 ## Requirements
 
 - iOS 6.0+
@@ -49,16 +59,6 @@ $ open MyProject.xcworkspace
 ### Manually
 
 [Download](https://github.com/YannickL/YLTCPBroadcaster/archive/master.zip) the project and copy the `YLTCPBroadcaster` folder into your project and then simply `#import "YLTCPBroadcaster.h"` in the file(s) you would like to use it in.
-
-## Usage
-
-```objective-c
-YLTCPBroadcaster *broadcaster = [YLTCPBroadcaster defaultBroadcaster];
-[_broadcaster scanWithPort:8080 timeoutInterval:1.5 completionHandler:^(NSArray *hosts) {
-   // E.g.: ["192.168.0.3", "192.168.0.56", "192.168.0.87"]
-   NSLog(@"Available hosts: %@", hosts);
-}];
-```
 
 ## Contact
 
