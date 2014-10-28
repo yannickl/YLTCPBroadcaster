@@ -47,9 +47,9 @@ static NSString * kTableViewCellIdentifier = @"YLDeviceCell";
     
     _refreshButtonItem.enabled = NO;
     self.title                 = [NSString stringWithFormat:@"Scanning %@:%d...", _broadcaster.networkPrefix, 8080];
-    
+
     __weak typeof(self) weakSelf = self;
-    [_broadcaster scanPort:8080 timeout:1.5 completionHandler:^(NSArray *hosts) {
+    [_broadcaster scanWithPort:8080 timeoutInterval:1.5 completionHandler:^(NSArray *hosts) {
         [app setNetworkActivityIndicatorVisible:NO];
         
         weakSelf.remoteHosts               = hosts;

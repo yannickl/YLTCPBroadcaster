@@ -31,9 +31,47 @@
  */
 @interface YLTCPUtils : NSObject
 
+#pragma mark - Getting Socket Properties
+/** @name Getting Socket Properties */
+
+/**
+ * @abstract Returns the current device's ip address on the network.
+ * @discussion E.g. `192.168.0.1`. It returns nil if something
+ * went wrong.
+ * @since 1.0.0
+ */
 + (NSString *)localIp;
+
+/**
+ * @abstract Returns the subnet mask of the current device network.
+ * @discussion E.g. `255.255.255.0`. It returns nil if something
+ * went wrong.
+ * @since 1.0.0
+ */
 + (NSString *)localSubnetMask;
+
+/**
+ * @abstract Compute and returns the network prefix using a given ip and
+ * its subnet mask.
+ * @param ip An ip address.
+ * @param subnetMask A subnet mask.
+ * @discussion E.g. with the `192.168.5.130` ip address and its associated
+ * network mask `255.255.255.192`, the network prefix is `192.168.5.128`.
+ * It returns nil if something went wrong.
+ * @since 1.0.0
+ */
 + (NSString *)networkPrefixWithIp:(NSString *)ip subnetMask:(NSString *)subnetMask;
-+ (NSString *)broadcastAddressFromIp:(NSString *)ip withSubnetMask:(NSString *)subnetMask;
+
+/**
+ * @abstract Compute and returns the broadcast address using a given ip and
+ * its subnet mask.
+ * @param ip An ip address.
+ * @param subnetMask A subnet mask.
+ * @discussion E.g. with the `192.168.5.130` ip address and its associated
+ * network mask `255.255.255.192`, the broadcast address is `192.168.5.191`.
+ * It returns nil if something went wrong.
+ * @since 1.0.0
+ */
++ (NSString *)broadcastAddressWithIp:(NSString *)ip subnetMask:(NSString *)subnetMask;
 
 @end

@@ -117,7 +117,7 @@
     return networkPrefixAddress;
 }
 
-+ (NSString *)broadcastAddressFromIp:(NSString *)ip withSubnetMask:(NSString *)subnetMask
++ (NSString *)broadcastAddressWithIp:(NSString *)ip subnetMask:(NSString *)subnetMask
 {
     NSParameterAssert(ip);
     NSParameterAssert(subnetMask);

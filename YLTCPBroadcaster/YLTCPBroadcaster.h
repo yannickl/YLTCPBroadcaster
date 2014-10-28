@@ -32,7 +32,7 @@
  * value and takes one argument: the `hosts`.
  *
  * - `hosts`: A list of ip strings corresponding to every host available on 
- * the network.
+ * the network. If no host is found the array is empty.
  */
 typedef void (^YLTCPBroadcasterCompletionBlock) (NSArray *hosts);
 
@@ -49,16 +49,92 @@ typedef void (^YLTCPBroadcasterCompletionBlock) (NSArray *hosts);
  * manner it can determine whether the host is open on the given port.
  */
 @interface YLTCPBroadcaster : NSObject
-@property (nonatomic, strong, readonly) NSString *ip;
-@property (nonatomic, strong, readonly) NSString *subnetMask;
-@property (nonatomic, strong, readonly) NSString *networkPrefix;
-@property (nonatomic, strong, readonly) NSString *broadcastAddress;
 
-- (id)initWithIp:(NSString *)ip subnetMask:(NSString *)subnetMask;
-+ (instancetype)broadcasterWithIp:(NSString *)ip subnetMask:(NSString *)subnetMask;
+#pragma mark - Creating and Initializing TCP Broadcasters
+/** @name Creating and Initializing TCP Broadcasters */
+
+/**
+ * @abstract Creates and returns the default broadcaster.
+ * @discussion The default broadcaster corresponding to the default device 
+ * network. It means the broadcaster's `ip`, `subnetMask`, `networkPrefix`
+ * and `broadcastAddress` are the same of the current device.
+ * @since 1.0.0
+ */
 + (instancetype)defaultBroadcaster;
 
-- (void)scanPort:(NSInteger)port completionHandler:(YLTCPBroadcasterCompletionBlock)completion;
-- (void)scanPort:(NSInteger)port timeout:(NSTimeInterval)timeout completionHandler:(YLTCPBroadcasterCompletionBlock)completion;
+/**
+ * @abstract Initializes a broadcaster with an ip and its subnet mask.
+ * @param ip The ip of the receiver.
+ * @param subnetMask The subnet mask corresponding to the ip.
+ * @discussion In order to perform the request the ip and the subnet mask 
+ * should be the same of the current device.
+ * @since 1.0.0
+ */
+- (id)initWithIp:(NSString *)ip subnetMask:(NSString *)subnetMask;
+
+/**
+ * @abstract Creates a broadcaster with an ip and its subnet mask.
+ * @param ip The ip of the receiver.
+ * @param subnetMask The subnet mask corresponding to the ip.
+ * @see initWithIp:subnetMask:
+ * @since 1.0.0
+ */
++ (instancetype)broadcasterWithIp:(NSString *)ip subnetMask:(NSString *)subnetMask;
+
+#pragma mark - Getting Broadcaster Properties
+/** @name Getting Broadcaster Properties */
+
+/**
+ * @abstract The receiver’s ip address.
+ * @since 1.0.0
+ */
+@property (nonatomic, strong, readonly) NSString *ip;
+
+/**
+ * @abstract The receiver’s subnet mask.
+ * @since 1.0.0
+ */
+@property (nonatomic, strong, readonly) NSString *subnetMask;
+
+/**
+ * @abstract The receiver’s network prefix address.
+ * @since 1.0.0
+ */
+@property (nonatomic, strong, readonly) NSString *networkPrefix;
+
+/**
+ * @abstract The receiver’s broadcast address.
+ * @since 1.0.0
+ */
+@property (nonatomic, strong, readonly) NSString *broadcastAddress;
+
+#pragma mark - Scanning the Network
+/** @name Scanning the Network */
+
+/**
+ * @abstract Performs an asynchronous scan of the current network to find
+ * every host which are listening on a given TCP port number.
+ * @param port The TCP port number to which the socket should connect.
+ * @param completionBlock A broadcaster completion block.
+ * @discussion The operation is performed with the
+ * `kYLTCPSocketDefaultTimeoutInSeconds` timeout value.
+ * @see scanWithPort:timeoutInterval:completionHandler:
+ * @since 1.0.0
+ */
+- (void)scanWithPort:(SInt32)port completionHandler:(YLTCPBroadcasterCompletionBlock)completionBlock;
+
+/**
+ * @abstract Performs an asynchronous scan of the current network to find
+ * every host which are listening on a given TCP port number. The operation
+ * is stopped if the time exceeded the timeout.
+ * @param port The TCP port number to which the socket should connect.
+ * @param timeout The timeout interval for the operation, in seconds.
+ * @param completionBlock A broadcaster completion block.
+ * @discussion The operation runs entirely within its own GCD dispatch_queue
+ * and it calls the completion handler on the main queue when it finishes. If
+ * no host is found and/or if an error occured the returned list is empty.
+ * @since 1.0.0
+ */
+- (void)scanWithPort:(SInt32)port timeoutInterval:(NSTimeInterval)timeout completionHandler:(YLTCPBroadcasterCompletionBlock)completionBlock;
 
 @end

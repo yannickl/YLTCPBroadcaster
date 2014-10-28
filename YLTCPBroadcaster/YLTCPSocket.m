@@ -31,18 +31,20 @@
 #include <netinet/in.h>
 #include <netdb.h>
 
-const NSUInteger kTCPSocketDefaultTimeoutInSeconds = 2;
+const NSUInteger kYLTCPSocketDefaultTimeoutInSeconds = 2;
 
 @interface YLTCPSocket ()
-@property (nonatomic, strong) NSString   *hostname;
-@property (nonatomic, assign) NSUInteger port;
+@property (nonatomic, strong) NSString         *hostname;
+@property (nonatomic, assign) SInt32           port;
 @property (nonatomic, strong) dispatch_queue_t backgroundQueue;
 
 @end
 
 @implementation YLTCPSocket
 
-- (id)initWithHostname:(NSString *)hostname port:(NSUInteger)port {
+#pragma mark Creating and Initializing TCP Sockets
+
+- (id)initWithHostname:(NSString *)hostname port:(SInt32)port {
     if ((self = [super init])) {
         NSParameterAssert(hostname);
         NSParameterAssert(port);
@@ -55,15 +57,17 @@ const NSUInteger kTCPSocketDefaultTimeoutInSeconds = 2;
     return self;
 }
 
-+ (instancetype)socketWithHostname:(NSString *)hostname port:(NSUInteger)port {
++ (instancetype)socketWithHostname:(NSString *)hostname port:(SInt32)port {
     return [[self alloc] initWithHostname:hostname port:port];
 }
 
+#pragma mark - Connecting with Host
+
 - (void)connectWithCompletionHandler:(YLTCPSocketCompletionBlock)completion {
-    [self connectWithTimeout:kTCPSocketDefaultTimeoutInSeconds completionHandler:completion];
+    [self connectWithTimeoutInterval:kYLTCPSocketDefaultTimeoutInSeconds completionHandler:completion];
 }
 
-- (void)connectWithTimeout:(NSTimeInterval)timeout completionHandler:(YLTCPSocketCompletionBlock)completion {
+- (void)connectWithTimeoutInterval:(NSTimeInterval)timeout completionHandler:(YLTCPSocketCompletionBlock)completion {
     dispatch_async(_backgroundQueue, ^ {
         YLTCPSocketCompletionBlock performCompletionHandler = ^ (BOOL success, NSString *errorMessage) {
             if (completion) {

@@ -40,6 +40,8 @@
 
 @implementation YLTCPBroadcaster
 
+#pragma mark Creating and Initializing TCP Broadcasters
+
 - (id)initWithIp:(NSString *)ip subnetMask:(NSString *)subnetMask {
     if ((self = [super init])) {
         NSParameterAssert(ip);
@@ -48,7 +50,7 @@
         _ip               = ip;
         _subnetMask       = subnetMask;
         _networkPrefix    = [YLTCPUtils networkPrefixWithIp:_ip subnetMask:_subnetMask];
-        _broadcastAddress = [YLTCPUtils broadcastAddressFromIp:_ip withSubnetMask:_subnetMask];
+        _broadcastAddress = [YLTCPUtils broadcastAddressWithIp:_ip subnetMask:_subnetMask];
         _group            = dispatch_group_create();
     }
     return self;
@@ -71,11 +73,13 @@
     return defaultBroadcaster;
 }
 
-- (void)scanPort:(NSInteger)port completionHandler:(YLTCPBroadcasterCompletionBlock)completion {
-    [self scanPort:port timeout:kTCPSocketDefaultTimeoutInSeconds completionHandler:completion];
+#pragma mark - Scanning the Network
+
+- (void)scanWithPort:(SInt32)port completionHandler:(YLTCPBroadcasterCompletionBlock)completion {
+    [self scanWithPort:port timeoutInterval:kYLTCPSocketDefaultTimeoutInSeconds completionHandler:completion];
 }
 
-- (void)scanPort:(NSInteger)port timeout:(NSTimeInterval)timeout completionHandler:(YLTCPBroadcasterCompletionBlock)completion {
+- (void)scanWithPort:(SInt32)port timeoutInterval:(NSTimeInterval)timeout completionHandler:(YLTCPBroadcasterCompletionBlock)completion {
     @autoreleasepool {
         NSMutableArray *availableHosts = [NSMutableArray array];
         
@@ -101,7 +105,7 @@
                             
                             dispatch_group_enter(_group);
                             YLTCPSocket *socket = [YLTCPSocket socketWithHostname:remoteIp port:port];
-                            [socket connectWithTimeout:timeout completionHandler:^(BOOL success, NSString *errorMessage) {
+                            [socket connectWithTimeoutInterval:timeout completionHandler:^(BOOL success, NSString *errorMessage) {
                                 if (success) {
                                     [availableHosts addObject:socket.hostname];
                                 }

@@ -26,7 +26,7 @@
 
 #import <Foundation/Foundation.h>
 
-extern const NSUInteger kTCPSocketDefaultTimeoutInSeconds;
+extern const NSUInteger kYLTCPSocketDefaultTimeoutInSeconds;
 
 /**
  * @abstract The TCP socket completion block. This block has no return value 
@@ -44,13 +44,67 @@ typedef void (^YLTCPSocketCompletionBlock) (BOOL success, NSString *errorMessage
  * remote host to check if a connection is possible.
  */
 @interface YLTCPSocket : NSObject
+
+#pragma mark - Creating and Initializing TCP Sockets
+/** @name Creating and Initializing TCP Sockets */
+
+/**
+ * @abstract Initializes a TCP socket with an endpoint's name and port number.
+ * @param hostname The hostname of the remote endpoint.
+ * @param port The TCP port number to which the socket should connect.
+ * @since 1.0.0
+ */
+- (id)initWithHostname:(NSString *)hostname port:(SInt32)port;
+
+/**
+ * @abstract Creates a TCP socket with an endpoint's name and port number.
+ * @param hostname The hostname of the remote endpoint.
+ * @param port The TCP port number to which the socket should connect.
+ * @see initWithHostname:port:
+ * @since 1.0.0
+ */
++ (instancetype)socketWithHostname:(NSString *)hostname port:(SInt32)port;
+
+#pragma mark - Getting Socket Properties
+/** @name Getting Socket Properties */
+
+/**
+ * @abstract The receiver’s host name.
+ * @since 1.0.0
+ */
 @property (nonatomic, strong, readonly) NSString *hostname;
-@property (nonatomic, readonly) NSUInteger       port;
 
-- (id)initWithHostname:(NSString *)hostname port:(NSUInteger)port;
-+ (instancetype)socketWithHostname:(NSString *)hostname port:(NSUInteger)port;
+/**
+ * @abstract The receiver’s TCP port number.
+ * @since 1.0.0
+ */
+@property (nonatomic, readonly) SInt32 port;
 
-- (void)connectWithCompletionHandler:(YLTCPSocketCompletionBlock)completion;
-- (void)connectWithTimeout:(NSTimeInterval)timeout completionHandler:(YLTCPSocketCompletionBlock)completion;
+#pragma mark - Connecting with Host
+/** @name Connecting with Host */
+
+/**
+ * @abstract Performs an asynchronous connection to the remote endpoint and
+ * call the completion handler when the operation did finished or if the
+ * time exceeded the timeout.
+ * @param completionBlock A socket completion block.
+ * @discussion The operation is performed with the
+ * `kYLTCPSocketDefaultTimeoutInSeconds` timeout value.
+ * @see connectWithTimeoutInterval:completionHandler:
+ * @since 1.0.0
+ */
+- (void)connectWithCompletionHandler:(YLTCPSocketCompletionBlock)completionBlock;
+
+/**
+ * @abstract Performs an asynchronous connection to the remote endpoint and
+ * call the completion handler when the operation did finished or if the
+ * time exceeded the timeout.
+ * @param timeout The timeout interval for the operation, in seconds.
+ * @param completionBlock A socket completion block.
+ * @discussion The operation runs entirely within its own GCD dispatch_queue
+ * and it calls the completion handler on the main queue when it finishes.
+ * @since 1.0.0
+ */
+- (void)connectWithTimeoutInterval:(NSTimeInterval)timeout completionHandler:(YLTCPSocketCompletionBlock)completionBlock;
 
 @end
