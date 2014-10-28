@@ -25,7 +25,16 @@
                             <outlet property="delegate" destination="RBs-JY-UWB" id="0ZO-N1-Lxw"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="Web-td-LrD"/>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="Web-td-LrD">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="U3w-PT-mP5">
+                            <connections>
+                                <action selector="refreshAction:" destination="RBs-JY-UWB" id="6jZ-Ub-4db"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="refreshButtonItem" destination="U3w-PT-mP5" id="12F-8m-Qkh"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sa1-32-sgN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

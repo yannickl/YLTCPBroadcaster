@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UITableViewController
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *refreshButtonItem;
 
+- (IBAction)refreshAction:(id)sender;
 
 @end
 

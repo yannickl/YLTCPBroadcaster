@@ -2,4 +2,5 @@
 
 ### Version 1.0.0 (Initial Version)
 
-- Ability to broadcast a local network thanks to the submask
+- Scan the local network (ip, subnet mask) in order to locate all hosts with a given TCP port open
+- Utilities to retrieve `ip`, `subnet mask`, `broadcast address`, `network prefix`
