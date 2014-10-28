@@ -24,7 +24,11 @@ static NSString * kTableViewCellIdentifier = @"YLDeviceCell";
     [super viewDidLoad];
     
     _broadcaster = [YLTCPBroadcaster defaultBroadcaster];
+}
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
     [self scanNetwork];
 }
 
@@ -45,7 +49,7 @@ static NSString * kTableViewCellIdentifier = @"YLDeviceCell";
     self.title                 = [NSString stringWithFormat:@"Scanning %@:%d...", _broadcaster.networkPrefix, 8080];
     
     __weak typeof(self) weakSelf = self;
-    [_broadcaster scanPort:8080 completionHandler:^(NSArray *hosts) {
+    [_broadcaster scanPort:8080 timeout:1.5 completionHandler:^(NSArray *hosts) {
         [app setNetworkActivityIndicatorVisible:NO];
         
         weakSelf.remoteHosts               = hosts;
