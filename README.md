@@ -1,6 +1,10 @@
-# YLTCPBroadcaster [![Supported Plateforms](https://cocoapod-badges.herokuapp.com/p/YLTCPBroadcaster/badge.svg)](http://cocoadocs.org/docsets/YLTCPBroadcaster/) [![Version](https://cocoapod-badges.herokuapp.com/v/YLTCPBroadcaster/badge.svg)]]
+# YLTCPBroadcaster [![Supported Plateforms](https://cocoapod-badges.herokuapp.com/p/YLTCPBroadcaster/badge.svg)](http://cocoadocs.org/docsets/YLTCPBroadcaster/) [![Version](https://cocoapod-badges.herokuapp.com/v/YLTCPBroadcaster/badge.svg)]
 
-YLTCPBroadcaster is a small library to help to scan/broadcast over the TCP protocol and written in Objective-C.
+YLTCPBroadcaster is a small library written in Objective-C to find every host with a given TCP port number open on the network. It works like an UDP broadcast but for the TCP protocol.
+
+## How it works
+
+The main concept behind the `YLTCPBroadcaster` is very simple. To simulate the broadcast, the library creates a  connection to every host on the network on the specified TCP port number. Then it waits for a response and in this manner it can determine whether the host is open on the given port number.
 
 ## Requirements
 
@@ -26,7 +30,7 @@ $ cd /path/to/MyProject
 $ touch Podfile
 $ edit Podfile
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '5.0'
+platform :ios, '6.0'
 pod 'YLTCPBroadcaster', '~> 1.0.0'
 ```
 
@@ -48,7 +52,13 @@ $ open MyProject.xcworkspace
 
 ## Usage
 
-Under development
+```objective-c
+YLTCPBroadcaster *broadcaster = [YLTCPBroadcaster defaultBroadcaster];
+[_broadcaster scanWithPort:8080 timeoutInterval:1.5 completionHandler:^(NSArray *hosts) {
+   // E.g.: ["192.168.0.3", "192.168.0.56", "192.168.0.87"]
+   NSLog(@"Available hosts: %@", hosts);
+}];
+```
 
 ## Contact
 
