@@ -1,4 +1,4 @@
-# YLTCPBroadcaster [![Supported Plateforms](https://cocoapod-badges.herokuapp.com/p/YLTCPBroadcaster/badge.svg)](http://cocoadocs.org/docsets/YLTCPBroadcaster/) [![Version](https://cocoapod-badges.herokuapp.com/v/YLMoment/badge.svg)]
+# YLTCPBroadcaster [![Supported Plateforms](https://cocoapod-badges.herokuapp.com/p/YLTCPBroadcaster/badge.svg)](http://cocoadocs.org/docsets/YLTCPBroadcaster/) [![Version](https://cocoapod-badges.herokuapp.com/v/YLTCPBroadcaster/badge.svg)]]
 
 YLTCPBroadcaster is a small library to help to scan/broadcast over the TCP protocol and written in Objective-C.
 

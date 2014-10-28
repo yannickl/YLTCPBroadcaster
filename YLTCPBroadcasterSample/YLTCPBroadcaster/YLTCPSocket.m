@@ -24,7 +24,7 @@ const NSUInteger kTCPSocketDefaultTimeoutInSeconds = 2;
 
 @implementation YLTCPSocket
 
-- (id)initWithHostName:(NSString *)hostname port:(NSUInteger)port {
+- (id)initWithHostname:(NSString *)hostname port:(NSUInteger)port {
     if ((self = [super init])) {
         NSParameterAssert(hostname);
         NSParameterAssert(port);
@@ -37,8 +37,8 @@ const NSUInteger kTCPSocketDefaultTimeoutInSeconds = 2;
     return self;
 }
 
-+ (instancetype)socketWithHostName:(NSString *)hostname port:(NSUInteger)port {
-    return [[self alloc] initWithHostName:hostname port:port];
++ (instancetype)socketWithHostname:(NSString *)hostname port:(NSUInteger)port {
+    return [[self alloc] initWithHostname:hostname port:port];
 }
 
 - (void)connectWithCompletionHandler:(YLTCPSocketCompletionBlock)completion {

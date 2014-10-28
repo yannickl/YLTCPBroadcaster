@@ -2,7 +2,7 @@ Pod::Spec.new do |s|
   s.name         = 'YLTCPBroadcaster'
   s.version      = '1.0.0'
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
-  s.summary      = 'Network scanner to find all TCP hosts with a given open port'
+  s.summary      = 'Fast and easy-to-use network scanner to locate TCP hosts with a given open port'
   s.description  = <<-DESC
                     YLTCPBroadcaster is a small library to help to scan/broadcast over the TCP protocol and written in Objective-C.
                    DESC

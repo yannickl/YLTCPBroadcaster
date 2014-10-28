@@ -14,10 +14,12 @@
 		CEC39A5D19FEA86A003D8AC9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC39A5C19FEA86A003D8AC9 /* Images.xcassets */; };
 		CEC39A6019FEA86A003D8AC9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEC39A5E19FEA86A003D8AC9 /* LaunchScreen.xib */; };
 		CEC39A6C19FEA86B003D8AC9 /* YLTCPBroadcasterSampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC39A6B19FEA86B003D8AC9 /* YLTCPBroadcasterSampleTests.m */; };
-		CEC39A7A19FEA8FA003D8AC9 /* YLTCPSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC39A7919FEA8FA003D8AC9 /* YLTCPSocket.m */; };
-		CEC39A7B19FEA8FA003D8AC9 /* YLTCPSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC39A7919FEA8FA003D8AC9 /* YLTCPSocket.m */; };
-		CEC39A7D19FEC10B003D8AC9 /* YLTCPBroadcaster.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC39A7C19FEC10B003D8AC9 /* YLTCPBroadcaster.m */; };
-		CEC39A7E19FEC10B003D8AC9 /* YLTCPBroadcaster.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC39A7C19FEC10B003D8AC9 /* YLTCPBroadcaster.m */; };
+		CEC39A8A19FFB362003D8AC9 /* YLTCPBroadcaster.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC39A8519FFB362003D8AC9 /* YLTCPBroadcaster.m */; };
+		CEC39A8B19FFB362003D8AC9 /* YLTCPBroadcaster.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC39A8519FFB362003D8AC9 /* YLTCPBroadcaster.m */; };
+		CEC39A8C19FFB362003D8AC9 /* YLTCPSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC39A8719FFB362003D8AC9 /* YLTCPSocket.m */; };
+		CEC39A8D19FFB362003D8AC9 /* YLTCPSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC39A8719FFB362003D8AC9 /* YLTCPSocket.m */; };
+		CEC39A8E19FFB362003D8AC9 /* YLTCPUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC39A8919FFB362003D8AC9 /* YLTCPUtils.m */; };
+		CEC39A8F19FFB362003D8AC9 /* YLTCPUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC39A8919FFB362003D8AC9 /* YLTCPUtils.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,10 +46,12 @@
 		CEC39A6519FEA86B003D8AC9 /* YLTCPBroadcasterSampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YLTCPBroadcasterSampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEC39A6A19FEA86B003D8AC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEC39A6B19FEA86B003D8AC9 /* YLTCPBroadcasterSampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YLTCPBroadcasterSampleTests.m; sourceTree = "<group>"; };
-		CEC39A7719FEA8BE003D8AC9 /* YLTCPBroadcaster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLTCPBroadcaster.h; sourceTree = "<group>"; };
-		CEC39A7819FEA8FA003D8AC9 /* YLTCPSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLTCPSocket.h; sourceTree = "<group>"; };
-		CEC39A7919FEA8FA003D8AC9 /* YLTCPSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLTCPSocket.m; sourceTree = "<group>"; };
-		CEC39A7C19FEC10B003D8AC9 /* YLTCPBroadcaster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLTCPBroadcaster.m; sourceTree = "<group>"; };
+		CEC39A8419FFB362003D8AC9 /* YLTCPBroadcaster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLTCPBroadcaster.h; sourceTree = "<group>"; };
+		CEC39A8519FFB362003D8AC9 /* YLTCPBroadcaster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLTCPBroadcaster.m; sourceTree = "<group>"; };
+		CEC39A8619FFB362003D8AC9 /* YLTCPSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLTCPSocket.h; sourceTree = "<group>"; };
+		CEC39A8719FFB362003D8AC9 /* YLTCPSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLTCPSocket.m; sourceTree = "<group>"; };
+		CEC39A8819FFB362003D8AC9 /* YLTCPUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLTCPUtils.h; sourceTree = "<group>"; };
+		CEC39A8919FFB362003D8AC9 /* YLTCPUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLTCPUtils.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,7 +75,7 @@
 		CEC39A4319FEA86A003D8AC9 = {
 			isa = PBXGroup;
 			children = (
-				CEC39A7619FEA8BE003D8AC9 /* YLTCPBroadcaster */,
+				CEC39A8319FFB362003D8AC9 /* YLTCPBroadcaster */,
 				CEC39A4E19FEA86A003D8AC9 /* YLTCPBroadcasterSample */,
 				CEC39A6819FEA86B003D8AC9 /* YLTCPBroadcasterSampleTests */,
 				CEC39A4D19FEA86A003D8AC9 /* Products */,
@@ -128,13 +132,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		CEC39A7619FEA8BE003D8AC9 /* YLTCPBroadcaster */ = {
+		CEC39A8319FFB362003D8AC9 /* YLTCPBroadcaster */ = {
 			isa = PBXGroup;
 			children = (
-				CEC39A7719FEA8BE003D8AC9 /* YLTCPBroadcaster.h */,
-				CEC39A7C19FEC10B003D8AC9 /* YLTCPBroadcaster.m */,
-				CEC39A7819FEA8FA003D8AC9 /* YLTCPSocket.h */,
-				CEC39A7919FEA8FA003D8AC9 /* YLTCPSocket.m */,
+				CEC39A8419FFB362003D8AC9 /* YLTCPBroadcaster.h */,
+				CEC39A8519FFB362003D8AC9 /* YLTCPBroadcaster.m */,
+				CEC39A8619FFB362003D8AC9 /* YLTCPSocket.h */,
+				CEC39A8719FFB362003D8AC9 /* YLTCPSocket.m */,
+				CEC39A8819FFB362003D8AC9 /* YLTCPUtils.h */,
+				CEC39A8919FFB362003D8AC9 /* YLTCPUtils.m */,
 			);
 			path = YLTCPBroadcaster;
 			sourceTree = "<group>";
@@ -239,11 +245,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEC39A8C19FFB362003D8AC9 /* YLTCPSocket.m in Sources */,
 				CEC39A5819FEA86A003D8AC9 /* ViewController.m in Sources */,
-				CEC39A7D19FEC10B003D8AC9 /* YLTCPBroadcaster.m in Sources */,
-				CEC39A7A19FEA8FA003D8AC9 /* YLTCPSocket.m in Sources */,
 				CEC39A5519FEA86A003D8AC9 /* AppDelegate.m in Sources */,
 				CEC39A5219FEA86A003D8AC9 /* main.m in Sources */,
+				CEC39A8E19FFB362003D8AC9 /* YLTCPUtils.m in Sources */,
+				CEC39A8A19FFB362003D8AC9 /* YLTCPBroadcaster.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,9 +258,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEC39A8F19FFB362003D8AC9 /* YLTCPUtils.m in Sources */,
 				CEC39A6C19FEA86B003D8AC9 /* YLTCPBroadcasterSampleTests.m in Sources */,
-				CEC39A7E19FEC10B003D8AC9 /* YLTCPBroadcaster.m in Sources */,
-				CEC39A7B19FEA8FA003D8AC9 /* YLTCPSocket.m in Sources */,
+				CEC39A8B19FFB362003D8AC9 /* YLTCPBroadcaster.m in Sources */,
+				CEC39A8D19FFB362003D8AC9 /* YLTCPSocket.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

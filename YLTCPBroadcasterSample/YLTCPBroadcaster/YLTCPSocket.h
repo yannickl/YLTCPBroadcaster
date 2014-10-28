@@ -16,8 +16,8 @@ typedef void (^YLTCPSocketCompletionBlock) (BOOL success, NSString *message);
 @property (nonatomic, strong, readonly) NSString *hostname;
 @property (nonatomic, readonly) NSUInteger       port;
 
-- (id)initWithHostName:(NSString *)hostname port:(NSUInteger)port;
-+ (instancetype)socketWithHostName:(NSString *)hostname port:(NSUInteger)port;
+- (id)initWithHostname:(NSString *)hostname port:(NSUInteger)port;
++ (instancetype)socketWithHostname:(NSString *)hostname port:(NSUInteger)port;
 
 - (void)connectWithCompletionHandler:(YLTCPSocketCompletionBlock)completion;
 - (void)connectWithTimeout:(NSTimeInterval)timeout completionHandler:(YLTCPSocketCompletionBlock)completion;
