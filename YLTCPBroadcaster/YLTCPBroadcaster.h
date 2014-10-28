@@ -1,13 +1,64 @@
-//
-//  YLTCPBroadcaster.h
-//  YLTCPBroadcasterSample
-//
-//  Created by Yannick Loriot on 27/10/14.
-//  Copyright (c) 2014 Yannick Loriot. All rights reserved.
-//
+/*
+ * YLTCPBroadcaster
+ *
+ * Copyright 2014 - present, Yannick Loriot.
+ * http://yannickloriot.com
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ *
+ */
 
-#ifndef YLTCPBroadcasterSample_YLTCPBroadcaster_h
-#define YLTCPBroadcasterSample_YLTCPBroadcaster_h
+#import "YLTCPSocket.h"
+#import "YLTCPUtils.h"
 
+/**
+ * @abstract The TCP broadcaster completion block. This block has no return
+ * value and takes one argument: the `hosts`.
+ *
+ * - `hosts`: A list of ip strings corresponding to every host available on 
+ * the network.
+ */
+typedef void (^YLTCPBroadcasterCompletionBlock) (NSArray *hosts);
 
-#endif
+/**
+ * An `YLTCPBroadcaster` object allows you to find every host on the specified
+ * network with a given TCP port open. E.g. find on your local network every
+ * hosts with the port `8080` open.
+ *
+ * `YLTCPBroadcaster` is fully GCD (Grand Central Dispatch) based and
+ * Thread-Safe.
+ *
+ * It works by broadcasting a TCP connection to every host on the network
+ * (using the subnet mask) and by waiting the response for each one. In this
+ * manner it can determine whether the host is open on the given port.
+ */
+@interface YLTCPBroadcaster : NSObject
+@property (nonatomic, strong, readonly) NSString *ip;
+@property (nonatomic, strong, readonly) NSString *subnetMask;
+@property (nonatomic, strong, readonly) NSString *networkPrefix;
+@property (nonatomic, strong, readonly) NSString *broadcastAddress;
+
+- (id)initWithIp:(NSString *)ip subnetMask:(NSString *)subnetMask;
++ (instancetype)broadcasterWithIp:(NSString *)ip subnetMask:(NSString *)subnetMask;
++ (instancetype)defaultBroadcaster;
+
+- (void)scanPort:(NSInteger)port completionHandler:(YLTCPBroadcasterCompletionBlock)completion;
+- (void)scanPort:(NSInteger)port timeout:(NSTimeInterval)timeout completionHandler:(YLTCPBroadcasterCompletionBlock)completion;
+
+@end

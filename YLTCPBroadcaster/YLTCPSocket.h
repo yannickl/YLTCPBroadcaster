@@ -26,11 +26,31 @@
 
 #import <Foundation/Foundation.h>
 
-@interface YLTCPUtils : NSObject
+extern const NSUInteger kTCPSocketDefaultTimeoutInSeconds;
 
-+ (NSString *)localIp;
-+ (NSString *)localSubnetMask;
-+ (NSString *)networkPrefixWithIp:(NSString *)ip subnetMask:(NSString *)subnetMask;
-+ (NSString *)broadcastAddressFromIp:(NSString *)ip withSubnetMask:(NSString *)subnetMask;
+/**
+ * @abstract The TCP socket completion block. This block has no return value 
+ * and takes two arguments: the `success` and the `message`.
+ *
+ * - `success`: Boolean value to check whether the socket achieved a connection
+ * with the remote host. If the value is equal to `NO` it means that an error 
+ * occured and you should look at the `errorMessage` argument.
+ * - `errorMessage`: A NSString to describe the reason of the connection failure.
+ */
+typedef void (^YLTCPSocketCompletionBlock) (BOOL success, NSString *errorMessage);
+
+/**
+ * The main purpose of the `YLTCPSocket` is to try to open a TCP socket with a
+ * remote host to check if a connection is possible.
+ */
+@interface YLTCPSocket : NSObject
+@property (nonatomic, strong, readonly) NSString *hostname;
+@property (nonatomic, readonly) NSUInteger       port;
+
+- (id)initWithHostname:(NSString *)hostname port:(NSUInteger)port;
++ (instancetype)socketWithHostname:(NSString *)hostname port:(NSUInteger)port;
+
+- (void)connectWithCompletionHandler:(YLTCPSocketCompletionBlock)completion;
+- (void)connectWithTimeout:(NSTimeInterval)timeout completionHandler:(YLTCPSocketCompletionBlock)completion;
 
 @end

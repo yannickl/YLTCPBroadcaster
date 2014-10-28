@@ -24,22 +24,16 @@
  *
  */
 
-#import "YLTCPSocket.h"
-#import "YLTCPUtils.h"
+#import <Foundation/Foundation.h>
 
-typedef void (^YLTCPBroadcasterCompletionBlock) (NSArray *hosts);
+/**
+ * Collection of useful method to work with sockets.
+ */
+@interface YLTCPUtils : NSObject
 
-@interface YLTCPBroadcaster : NSObject
-@property (nonatomic, strong, readonly) NSString *ip;
-@property (nonatomic, strong, readonly) NSString *subnetMask;
-@property (nonatomic, strong, readonly) NSString *networkPrefix;
-@property (nonatomic, strong, readonly) NSString *broadcastAddress;
-
-- (id)initWithIp:(NSString *)ip subnetMask:(NSString *)subnetMask;
-+ (instancetype)broadcasterWithIp:(NSString *)ip subnetMask:(NSString *)subnetMask;
-+ (instancetype)defaultBroadcaster;
-
-- (void)scanPort:(NSInteger)port completionHandler:(YLTCPBroadcasterCompletionBlock)completion;
-- (void)scanPort:(NSInteger)port timeout:(NSTimeInterval)timeout completionHandler:(YLTCPBroadcasterCompletionBlock)completion;
++ (NSString *)localIp;
++ (NSString *)localSubnetMask;
++ (NSString *)networkPrefixWithIp:(NSString *)ip subnetMask:(NSString *)subnetMask;
++ (NSString *)broadcastAddressFromIp:(NSString *)ip withSubnetMask:(NSString *)subnetMask;
 
 @end

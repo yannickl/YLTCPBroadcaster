@@ -101,7 +101,7 @@
                             
                             dispatch_group_enter(_group);
                             YLTCPSocket *socket = [YLTCPSocket socketWithHostname:remoteIp port:port];
-                            [socket connectWithTimeout:timeout completionHandler:^(BOOL success, NSString *message) {
+                            [socket connectWithTimeout:timeout completionHandler:^(BOOL success, NSString *errorMessage) {
                                 if (success) {
                                     [availableHosts addObject:socket.hostname];
                                 }

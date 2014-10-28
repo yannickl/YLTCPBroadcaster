@@ -65,10 +65,10 @@ const NSUInteger kTCPSocketDefaultTimeoutInSeconds = 2;
 
 - (void)connectWithTimeout:(NSTimeInterval)timeout completionHandler:(YLTCPSocketCompletionBlock)completion {
     dispatch_async(_backgroundQueue, ^ {
-        YLTCPSocketCompletionBlock performCompletionHandler = ^ (BOOL success, NSString *message) {
+        YLTCPSocketCompletionBlock performCompletionHandler = ^ (BOOL success, NSString *errorMessage) {
             if (completion) {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    completion(success, message);
+                    completion(success, errorMessage);
                 });
             }
         };

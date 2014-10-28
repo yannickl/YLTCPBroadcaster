@@ -4,7 +4,7 @@ YLTCPBroadcaster is a small library to help to scan/broadcast over the TCP proto
 
 ## Requirements
 
-- iOS 5.0+
+- iOS 6.0+
 - Xcode 6.0
 
 ## Installation
