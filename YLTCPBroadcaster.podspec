@@ -8,12 +8,13 @@ Pod::Spec.new do |s|
                     a given TCP port number open on the network. It works like an UDP broadcast but for
                     the TCP protocol.
                    DESC
+  s.homepage     = 'https://github.com/YannickL/YLTCPBroadcaster'
   s.authors      = { 'Yannick Loriot' => 'http://yannickloriot.com' }
   s.source       = { :git => 'https://github.com/YannickL/YLTCPBroadcaster.git',
                      :tag => s.version.to_s }
   s.requires_arc = true
 
-  s.source_files        = ['YLTCPBroadcaster/*.{h,m}']
+  s.source_files = ['YLTCPBroadcaster/*.{h,m}']
 
   s.framework = 'Foundation'
 
