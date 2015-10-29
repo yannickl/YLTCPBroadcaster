@@ -1,4 +1,5 @@
 # YLTCPBroadcaster [![Supported Plateforms](https://cocoapod-badges.herokuapp.com/p/YLTCPBroadcaster/badge.svg)](http://cocoadocs.org/docsets/YLTCPBroadcaster/) ![Version](https://cocoapod-badges.herokuapp.com/v/YLTCPBroadcaster/badge.svg)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 YLTCPBroadcaster is a small library written in Objective-C to find every host with a given TCP port number open on the network. It works like an UDP broadcast but for the TCP protocol.
 
@@ -7,6 +8,8 @@ YLTCPBroadcaster is a small library written in Objective-C to find every host wi
 The main concept behind the `YLTCPBroadcaster` is very simple. To simulate the broadcast, the library creates a  connection to every host on the network on the specified TCP port number. Then it waits for a response and in this manner it can determine whether the host is open on the given port number.
 
 ## Usage
+
+Here is the simplest way to use `YLTCPBroadcaster`:
 
 ```objective-c
 YLTCPBroadcaster *bc = [YLTCPBroadcaster defaultBroadcaster];
@@ -18,7 +21,7 @@ YLTCPBroadcaster *bc = [YLTCPBroadcaster defaultBroadcaster];
 
 ## Requirements
 
-- iOS 6.0+
+- iOS 6.0+ (iOS 8.0+ with Carthage)
 - Xcode 6.0
 
 ## Installation
@@ -40,8 +43,8 @@ $ cd /path/to/MyProject
 $ touch Podfile
 $ edit Podfile
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '6.0'
-pod 'YLTCPBroadcaster', '~> 1.0.0'
+platform :ios, '8.0'
+pod 'YLTCPBroadcaster', '~> 1.1.0'
 ```
 
 Install into your project:
@@ -54,6 +57,23 @@ Open your project in Xcode from the .xcworkspace file (not the usual project fil
 
 ``` bash
 $ open MyProject.xcworkspace
+```
+
+### Carthage
+
+[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that automates the process of adding frameworks to your Cocoa application.
+
+You can install Carthage with [Homebrew](http://brew.sh/) using the following command:
+
+```bash
+$ brew update
+$ brew install carthage
+```
+
+To integrate `YLTCPBroadcaster` into your Xcode project using Carthage, specify it in your `Cartfile` file:
+
+```ogdl
+github "yannickl/YLTCPBroadcaster" >= 1.1.0
 ```
 
 ### Manually
