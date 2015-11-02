@@ -63,7 +63,7 @@ const NSUInteger kYLTCPSocketDefaultTimeoutInSeconds = 2;
 
 #pragma mark - Connecting with Host
 
-- (int)connectWithTimeoutInterval:(NSTimeInterval)timeout {
+- (YLTCPSocketStatus)connectWithTimeoutInterval:(NSTimeInterval)timeout {
   // http://stackoverflow.com/questions/2597608/c-socket-connection-timeout
   // http://developerweb.net/viewtopic.php?id=3196
   int sockfd, res, valopt;
@@ -78,7 +78,7 @@ const NSUInteger kYLTCPSocketDefaultTimeoutInSeconds = 2;
   sockfd = socket(AF_INET, SOCK_STREAM, 0);
 
   if (sockfd < 0) {
-    return 1;
+    return YLTCPSocketStatusOpenSocketError;
   }
 
   // Create the remote endpoint
@@ -87,7 +87,7 @@ const NSUInteger kYLTCPSocketDefaultTimeoutInSeconds = 2;
   if (endpoint == NULL) {
     close(sockfd);
 
-    return 2;
+    return YLTCPSocketStatusNoHostError;
   }
 
   // Build the socket description
@@ -102,7 +102,7 @@ const NSUInteger kYLTCPSocketDefaultTimeoutInSeconds = 2;
   if ((arg = fcntl(sockfd, F_GETFL, NULL)) < 0) {
     close(sockfd);
 
-    return 3;
+    return YLTCPSocketStatusError;
   }
 
   arg |= O_NONBLOCK;
@@ -110,7 +110,7 @@ const NSUInteger kYLTCPSocketDefaultTimeoutInSeconds = 2;
   if (fcntl(sockfd, F_SETFL, arg) < 0) {
     close(sockfd);
 
-    return 4;
+    return YLTCPSocketStatusError;
   }
 
   // Trying to connect with timeout
@@ -131,7 +131,7 @@ const NSUInteger kYLTCPSocketDefaultTimeoutInSeconds = 2;
       if (res < 0 && errno != EINTR) {
         close(sockfd);
 
-        return 5;
+        return YLTCPSocketStatusError;
       }
       else if (res > 0) {
         // Socket selected for write
@@ -140,39 +140,39 @@ const NSUInteger kYLTCPSocketDefaultTimeoutInSeconds = 2;
         if (getsockopt(sockfd, SOL_SOCKET, SO_ERROR, (void*)(&valopt), &socklen) < 0) {
           close(sockfd);
 
-          return 6;
+          return YLTCPSocketStatusError;
         }
 
         // Check the returned value...
         if (valopt) {
           close(sockfd);
 
-          return 7;
+          return YLTCPSocketStatusError;
         }
 
         // The endpoint is alive!
         if (valopt == 0) {
           close(sockfd);
 
-          return 8;
+          return YLTCPSocketStatusOpened;
         }
       }
       else {
         close(sockfd);
 
-        return 9;
+        return YLTCPSocketStatusTimeOutError;
       }
     }
     else {
       close(sockfd);
 
-      return 10;
+      return YLTCPSocketStatusError;
     }
   }
 
   close(sockfd);
 
-  return -1;
+  return YLTCPSocketStatusError;
 }
 
 - (void)connectWithCompletionHandler:(YLTCPSocketCompletionBlock)completion {
@@ -189,46 +189,19 @@ const NSUInteger kYLTCPSocketDefaultTimeoutInSeconds = 2;
       }
     };
 
-    int status = [self connectWithTimeoutInterval:timeout];
+    YLTCPSocketStatus status = [self connectWithTimeoutInterval:timeout];
 
-    if (status == 1) {
-      return performCompletionHandler(NO, @"Can not opening socket");
-    }
-
-    if (status == 2) {
-      return performCompletionHandler(NO, @"No such host");
-    }
-
-    if (status == 3) {
-      return performCompletionHandler(NO, [NSString stringWithFormat:@"Error fcntl(..., F_GETFL) (%s)", strerror(errno)]);
-    }
-
-    if (status == 4) {
-      return performCompletionHandler(NO, [NSString stringWithFormat:@"Error fcntl(..., F_SETFL) (%s)", strerror(errno)]);
-    }
-
-    if (status == 5) {
-      return performCompletionHandler(NO, [NSString stringWithFormat:@"Error connecting %d - %s", errno, strerror(errno)]);
-    }
-
-    if (status == 6) {
-      return performCompletionHandler(NO, [NSString stringWithFormat:@"Error in getsockopt() %d - %s", errno, strerror(errno)]);
-    }
-
-    if (status ==  7) {
-      return performCompletionHandler(NO, @"Error in delayed connection()");
-    }
-
-    if (status == 8) {
-      return performCompletionHandler(YES, @"Remote TCP socket opened");
-    }
-
-    if (status == 9) {
-      return performCompletionHandler(NO, @"Timeout");
-    }
-
-    if (status == 10) {
-      return performCompletionHandler(NO, [NSString stringWithFormat:@"Error connecting %d - %s", errno, strerror(errno)]);
+    switch (status) {
+      case YLTCPSocketStatusError:
+        return performCompletionHandler(NO, @"Connection error");
+      case YLTCPSocketStatusOpenSocketError:
+        return performCompletionHandler(NO, @"Can not opening socket");
+      case YLTCPSocketStatusNoHostError:
+        return performCompletionHandler(NO, @"No such host");
+      case YLTCPSocketStatusTimeOutError:
+        return performCompletionHandler(NO, @"Timeout");
+      case YLTCPSocketStatusOpened:
+        return performCompletionHandler(YES, @"Remote TCP socket opened");
     }
   });
 }

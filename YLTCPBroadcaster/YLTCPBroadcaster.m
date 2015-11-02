@@ -107,9 +107,9 @@
               YLTCPSocket *socket = [YLTCPSocket socketWithHostname:remoteIp port:port];
 
               [queue addOperationWithBlock:^{
-                int status = [socket connectWithTimeoutInterval:timeout];
+                YLTCPSocketStatus status = [socket connectWithTimeoutInterval:timeout];
 
-                if (status == 8) {
+                if (status == YLTCPSocketStatusOpened) {
                   [availableHosts addObject:remoteIp];
                 }
               }];

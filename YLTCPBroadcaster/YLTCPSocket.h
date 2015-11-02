@@ -26,7 +26,22 @@
 
 #import <Foundation/Foundation.h>
 
+/// The preferred timeout in seconds
 extern const NSUInteger kYLTCPSocketDefaultTimeoutInSeconds;
+
+/** Defines the different socket status. */
+typedef NS_ENUM(NSInteger, YLTCPSocketStatus) {
+  /** Generic error status error. */
+  YLTCPSocketStatusError,
+  /** Cannot open a socket error. */
+  YLTCPSocketStatusOpenSocketError,
+  /** No available host error. */
+  YLTCPSocketStatusNoHostError,
+  /** Connection time out connection. */
+  YLTCPSocketStatusTimeOutError,
+  /** Host:port endpoint available. */
+  YLTCPSocketStatusOpened
+};
 
 /**
  * @abstract The TCP socket completion block. This block has no return value 
@@ -86,11 +101,12 @@ typedef void (^YLTCPSocketCompletionBlock) (BOOL success, NSString *errorMessage
 /**
  * @abstract Performs an synchronous connection to the remote endpoint.
  * @param timeout The timeout interval for the operation, in seconds.
+ * @returns A tcp status.
  * @discussion The operation is performed with the
  * `kYLTCPSocketDefaultTimeoutInSeconds` timeout value.
  * @since 2.0.0
  */
-- (int)connectWithTimeoutInterval:(NSTimeInterval)timeout;
+- (YLTCPSocketStatus)connectWithTimeoutInterval:(NSTimeInterval)timeout;
 
 /**
  * @abstract Performs an asynchronous connection to the remote endpoint and
