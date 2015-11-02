@@ -84,6 +84,15 @@ typedef void (^YLTCPSocketCompletionBlock) (BOOL success, NSString *errorMessage
 /** @name Connecting with Host */
 
 /**
+ * @abstract Performs an synchronous connection to the remote endpoint.
+ * @param timeout The timeout interval for the operation, in seconds.
+ * @discussion The operation is performed with the
+ * `kYLTCPSocketDefaultTimeoutInSeconds` timeout value.
+ * @since 2.0.0
+ */
+- (int)connectWithTimeoutInterval:(NSTimeInterval)timeout;
+
+/**
  * @abstract Performs an asynchronous connection to the remote endpoint and
  * call the completion handler when the operation did finished or if the
  * time exceeded the timeout.

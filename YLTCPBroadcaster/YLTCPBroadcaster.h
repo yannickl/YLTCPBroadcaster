@@ -31,7 +31,7 @@
  * @abstract The TCP broadcaster completion block. This block has no return
  * value and takes one argument: the `hosts`.
  *
- * - `hosts`: A list of ip strings corresponding to every host available on 
+ * - `hosts`: A list of ip strings corresponding to every host available on
  * the network. If no host is found the array is empty.
  */
 typedef void (^YLTCPBroadcasterCompletionBlock) (NSArray *hosts);
@@ -55,7 +55,7 @@ typedef void (^YLTCPBroadcasterCompletionBlock) (NSArray *hosts);
 
 /**
  * @abstract Creates and returns the default broadcaster.
- * @discussion The default broadcaster corresponding to the default device 
+ * @discussion The default broadcaster corresponding to the default device
  * network. It means the broadcaster's `ip`, `subnetMask`, `networkPrefix`
  * and `broadcastAddress` are the same of the current device.
  * @since 1.0.0
@@ -66,7 +66,7 @@ typedef void (^YLTCPBroadcasterCompletionBlock) (NSArray *hosts);
  * @abstract Initializes a broadcaster with an ip and its subnet mask.
  * @param ip The ip of the receiver.
  * @param subnetMask The subnet mask corresponding to the ip.
- * @discussion In order to perform the request the ip and the subnet mask 
+ * @discussion In order to perform the request the ip and the subnet mask
  * should be the same of the current device.
  * @since 1.0.0
  */
