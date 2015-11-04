@@ -6,6 +6,8 @@
 - [ADD] `YLTCPBroadcasterDelegate` property
 - [ADD] `YLTCPSocketStatus` enum
 - [ADD] `maxConcurrentConnectionCount` property
+- [UPDATE] Rename `networkPrefixWithIp:subnetMask:` to `subnetWithIp:mask:`
+- [UPDATE] Rename `broadcastAddressWithIp:subnetMask:` to `broadcastAddressWithIp:mask:`
 - [UPDATE] Improve compatibility with Swift 2
 
 ## [Version 1.1.0](https://github.com/yannickl/YLTCPBroadcaster/releases/tag/1.1.0)

@@ -1,6 +1,6 @@
 # YLTCPBroadcaster
 
-[![Supported Plateforms](https://cocoapod-badges.herokuapp.com/p/YLTCPBroadcaster/badge.svg)](http://cocoadocs.org/docsets/YLTCPBroadcaster/) ![Version](https://cocoapod-badges.herokuapp.com/v/YLTCPBroadcaster/badge.svg) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![Supported Plateforms](https://cocoapod-badges.herokuapp.com/p/YLTCPBroadcaster/badge.svg)](http://cocoadocs.org/docsets/YLTCPBroadcaster/) ![Version](https://cocoapod-badges.herokuapp.com/v/YLTCPBroadcaster/badge.svg) [![Build Status](https://travis-ci.org/yannickl/YLTCPBroadcaster.svg?branch=master)](https://travis-ci.org/yannickl/YLTCPBroadcaster)
 
 YLTCPBroadcaster is a small library written in Objective-C to find every host with a given TCP port number opened on the network. It works like an UDP broadcast but for the TCP protocol.
 

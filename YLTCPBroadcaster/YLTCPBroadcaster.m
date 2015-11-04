@@ -48,8 +48,8 @@
 
     _ip                           = ip;
     _subnetMask                   = subnetMask;
-    _networkPrefix                = [YLTCPUtils networkPrefixWithIp:_ip subnetMask:_subnetMask];
-    _broadcastAddress             = [YLTCPUtils broadcastAddressWithIp:_ip subnetMask:_subnetMask];
+    _networkPrefix                = [YLTCPUtils subnetWithIp:_ip mask:_subnetMask];
+    _broadcastAddress             = [YLTCPUtils broadcastAddressWithIp:_ip mask:_subnetMask];
     _maxConcurrentConnectionCount = 150;
   }
   return self;

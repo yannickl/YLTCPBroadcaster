@@ -60,7 +60,7 @@
  * It returns nil if something went wrong.
  * @since 1.0.0
  */
-+ (NSString * _Nullable)networkPrefixWithIp:(NSString * _Nonnull)ip subnetMask:(NSString * _Nonnull)subnetMask;
++ (NSString * _Nullable)subnetWithIp:(NSString * _Nonnull)ip mask:(NSString * _Nonnull)subnetMask;
 
 /**
  * @abstract Compute and returns the broadcast address using a given ip and
@@ -72,6 +72,6 @@
  * It returns nil if something went wrong.
  * @since 1.0.0
  */
-+ (NSString * _Nullable)broadcastAddressWithIp:(NSString * _Nonnull)ip subnetMask:(NSString * _Nonnull)subnetMask;
++ (NSString * _Nullable)broadcastAddressWithIp:(NSString * _Nonnull)ip mask:(NSString * _Nonnull)subnetMask;
 
 @end
