@@ -83,23 +83,6 @@ Open your project in Xcode from the .xcworkspace file (not the usual project fil
 $ open MyProject.xcworkspace
 ```
 
-### Carthage
-
-[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that automates the process of adding frameworks to your Cocoa application.
-
-You can install Carthage with [Homebrew](http://brew.sh/) using the following command:
-
-```bash
-$ brew update
-$ brew install carthage
-```
-
-To integrate `YLTCPBroadcaster` into your Xcode project using Carthage, specify it in your `Cartfile` file:
-
-```ogdl
-github "yannickl/YLTCPBroadcaster" >= 1.1.0
-```
-
 ### Manually
 
 [Download](https://github.com/YannickL/YLTCPBroadcaster/archive/master.zip) the project and copy the `YLTCPBroadcaster` folder into your project and then simply `#import "YLTCPBroadcaster.h"` in the file(s) you would like to use it in.
