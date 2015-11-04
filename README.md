@@ -12,11 +12,32 @@ Here is the simplest way to use `YLTCPBroadcaster`:
 
 ```objective-c
 YLTCPBroadcaster *bc = [YLTCPBroadcaster defaultBroadcaster];
+
 [bc scanWithPort:8080 timeoutInterval:1.5 completionHandler:^(NSArray *hosts) {
    // E.g.: ["192.168.0.3", "192.168.0.56", "192.168.0.87"]
    NSLog(@"Available hosts: %@", hosts);
 }];
 ```
+
+However if you want to be more responsive, by displaying the host found in real time in a tableview for example, you can respond to the delegate methods like that:
+
+```objective-c
+YLTCPBroadcaster *bc = [YLTCPBroadcaster defaultBroadcaster];
+bc.delegate          = self;
+
+-(void)tcpBroadcaster:(YLTCPBroadcaster *)broadcaster didFoundHost:(NSString *)host {
+  [self.tableView beginUpdates];
+
+  NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_remoteHosts.count inSection:0];
+  _remoteHosts           = [_remoteHosts arrayByAddingObject:host];
+
+  [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationRight];
+
+  [self.tableView endUpdates];
+}
+```
+
+For more information, take a look at the example project.
 
 ## Requirements
 
