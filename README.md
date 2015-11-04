@@ -70,7 +70,7 @@ $ touch Podfile
 $ edit Podfile
 source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
-pod 'YLTCPBroadcaster', '~> 1.1.0'
+pod 'YLTCPBroadcaster', '~> 2.0.0'
 ```
 
 Install into your project:
