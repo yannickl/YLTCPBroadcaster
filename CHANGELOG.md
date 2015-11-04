@@ -1,5 +1,12 @@
 ## Changelog
 
+## [Version 2.0.0](https://github.com/yannickl/YLTCPBroadcaster/releases/tag/2.0.0)
+*Released on 2015-10-29.*
+
+- [ADD] `YLTCPSocketStatus` enum
+- [ADD] `maxConcurrentConnectionCount` property
+- [UPDATE] Improve compatibility with Swift 2
+
 ## [Version 1.1.0](https://github.com/yannickl/YLTCPBroadcaster/releases/tag/1.1.0)
 *Released on 2015-10-29.*
 

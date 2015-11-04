@@ -29,7 +29,10 @@
 /// The preferred timeout in seconds
 extern const NSUInteger kYLTCPSocketDefaultTimeoutInSeconds;
 
-/** Defines the different socket status. */
+/**
+ * @abstract Defines the different socket status.
+ * @since 2.0.0
+ */
 typedef NS_ENUM(NSInteger, YLTCPSocketStatus) {
   /** Generic error status error. */
   YLTCPSocketStatusError,
@@ -52,7 +55,7 @@ typedef NS_ENUM(NSInteger, YLTCPSocketStatus) {
  * occured and you should look at the `errorMessage` argument.
  * - `errorMessage`: A NSString to describe the reason of the connection failure.
  */
-typedef void (^YLTCPSocketCompletionBlock) (BOOL success, NSString *errorMessage);
+typedef void (^YLTCPSocketCompletionBlock) (BOOL success, NSString * _Nullable errorMessage);
 
 /**
  * The main purpose of the `YLTCPSocket` is to try to open a TCP socket with a
@@ -69,7 +72,7 @@ typedef void (^YLTCPSocketCompletionBlock) (BOOL success, NSString *errorMessage
  * @param port The TCP port number to which the socket should connect.
  * @since 1.0.0
  */
-- (id)initWithHostname:(NSString *)hostname port:(SInt32)port;
+- (_Nonnull id)initWithHostname:(NSString * _Nonnull)hostname port:(SInt32)port;
 
 /**
  * @abstract Creates a TCP socket with an endpoint's name and port number.
@@ -78,7 +81,7 @@ typedef void (^YLTCPSocketCompletionBlock) (BOOL success, NSString *errorMessage
  * @see initWithHostname:port:
  * @since 1.0.0
  */
-+ (instancetype)socketWithHostname:(NSString *)hostname port:(SInt32)port;
++ (_Nonnull instancetype)socketWithHostname:(NSString * _Nonnull)hostname port:(SInt32)port;
 
 #pragma mark - Getting Socket Properties
 /** @name Getting Socket Properties */
@@ -87,7 +90,7 @@ typedef void (^YLTCPSocketCompletionBlock) (BOOL success, NSString *errorMessage
  * @abstract The receiver’s host name.
  * @since 1.0.0
  */
-@property (nonatomic, strong, readonly) NSString *hostname;
+@property (nonatomic, strong, readonly) NSString * _Nonnull hostname;
 
 /**
  * @abstract The receiver’s TCP port number.
@@ -118,7 +121,7 @@ typedef void (^YLTCPSocketCompletionBlock) (BOOL success, NSString *errorMessage
  * @see connectWithTimeoutInterval:completionHandler:
  * @since 1.0.0
  */
-- (void)connectWithCompletionHandler:(YLTCPSocketCompletionBlock)completionBlock;
+- (void)connectWithCompletionHandler:(YLTCPSocketCompletionBlock _Nullable)completionBlock;
 
 /**
  * @abstract Performs an asynchronous connection to the remote endpoint and
@@ -130,6 +133,6 @@ typedef void (^YLTCPSocketCompletionBlock) (BOOL success, NSString *errorMessage
  * and it calls the completion handler on the main queue when it finishes.
  * @since 1.0.0
  */
-- (void)connectWithTimeoutInterval:(NSTimeInterval)timeout completionHandler:(YLTCPSocketCompletionBlock)completionBlock;
+- (void)connectWithTimeoutInterval:(NSTimeInterval)timeout completionHandler:(YLTCPSocketCompletionBlock _Nullable)completionBlock;
 
 @end

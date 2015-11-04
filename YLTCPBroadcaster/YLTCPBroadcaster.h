@@ -34,7 +34,7 @@
  * - `hosts`: A list of ip strings corresponding to every host available on
  * the network. If no host is found the array is empty.
  */
-typedef void (^YLTCPBroadcasterCompletionBlock) (NSArray *hosts);
+typedef void (^YLTCPBroadcasterCompletionBlock) (NSArray * _Nonnull hosts);
 
 /**
  * An `YLTCPBroadcaster` object allows you to find every host on the specified
@@ -60,7 +60,7 @@ typedef void (^YLTCPBroadcasterCompletionBlock) (NSArray *hosts);
  * and `broadcastAddress` are the same of the current device.
  * @since 1.0.0
  */
-+ (instancetype)defaultBroadcaster;
++ (_Nonnull instancetype)defaultBroadcaster;
 
 /**
  * @abstract Initializes a broadcaster with an ip and its subnet mask.
@@ -70,7 +70,7 @@ typedef void (^YLTCPBroadcasterCompletionBlock) (NSArray *hosts);
  * should be the same of the current device.
  * @since 1.0.0
  */
-- (id)initWithIp:(NSString *)ip subnetMask:(NSString *)subnetMask;
+- (_Nonnull id)initWithIp:(NSString * _Nonnull)ip subnetMask:(NSString * _Nonnull)subnetMask;
 
 /**
  * @abstract Creates a broadcaster with an ip and its subnet mask.
@@ -79,7 +79,7 @@ typedef void (^YLTCPBroadcasterCompletionBlock) (NSArray *hosts);
  * @see initWithIp:subnetMask:
  * @since 1.0.0
  */
-+ (instancetype)broadcasterWithIp:(NSString *)ip subnetMask:(NSString *)subnetMask;
++ (_Nonnull instancetype)broadcasterWithIp:(NSString * _Nonnull)ip subnetMask:(NSString * _Nonnull)subnetMask;
 
 #pragma mark - Getting Broadcaster Properties
 /** @name Getting Broadcaster Properties */
@@ -88,25 +88,35 @@ typedef void (^YLTCPBroadcasterCompletionBlock) (NSArray *hosts);
  * @abstract The receiver’s ip address.
  * @since 1.0.0
  */
-@property (nonatomic, strong, readonly) NSString *ip;
+@property (nonatomic, strong, readonly) NSString * _Nonnull ip;
 
 /**
  * @abstract The receiver’s subnet mask.
  * @since 1.0.0
  */
-@property (nonatomic, strong, readonly) NSString *subnetMask;
+@property (nonatomic, strong, readonly) NSString * _Nonnull subnetMask;
 
 /**
  * @abstract The receiver’s network prefix address.
  * @since 1.0.0
  */
-@property (nonatomic, strong, readonly) NSString *networkPrefix;
+@property (nonatomic, strong, readonly) NSString * _Nullable networkPrefix;
 
 /**
  * @abstract The receiver’s broadcast address.
  * @since 1.0.0
  */
-@property (nonatomic, strong, readonly) NSString *broadcastAddress;
+@property (nonatomic, strong, readonly) NSString * _Nullable broadcastAddress;
+
+#pragma mark - Managing the Execution of Scan
+/** @name Managing the Execution of Scan */
+
+/**
+ * @abstract The maximum number of concurrent connection operation that
+ * can be executed at the same time. Default to 150.
+ * @since 2.0.0
+ */
+@property (nonatomic, assign) NSInteger maxConcurrentConnectionCount;
 
 #pragma mark - Scanning the Network
 /** @name Scanning the Network */
@@ -121,7 +131,7 @@ typedef void (^YLTCPBroadcasterCompletionBlock) (NSArray *hosts);
  * @see scanWithPort:timeoutInterval:completionHandler:
  * @since 1.0.0
  */
-- (void)scanWithPort:(SInt32)port completionHandler:(YLTCPBroadcasterCompletionBlock)completionBlock;
+- (void)scanWithPort:(SInt32)port completionHandler:(YLTCPBroadcasterCompletionBlock _Nullable)completionBlock;
 
 /**
  * @abstract Performs an asynchronous scan of the current network to find
@@ -135,6 +145,6 @@ typedef void (^YLTCPBroadcasterCompletionBlock) (NSArray *hosts);
  * no host is found and/or if an error occured the returned list is empty.
  * @since 1.0.0
  */
-- (void)scanWithPort:(SInt32)port timeoutInterval:(NSTimeInterval)timeout completionHandler:(YLTCPBroadcasterCompletionBlock)completionBlock;
+- (void)scanWithPort:(SInt32)port timeoutInterval:(NSTimeInterval)timeout completionHandler:(_Nonnull YLTCPBroadcasterCompletionBlock)completionBlock;
 
 @end

@@ -46,10 +46,11 @@
     NSParameterAssert(ip);
     NSParameterAssert(subnetMask);
 
-    _ip               = ip;
-    _subnetMask       = subnetMask;
-    _networkPrefix    = [YLTCPUtils networkPrefixWithIp:_ip subnetMask:_subnetMask];
-    _broadcastAddress = [YLTCPUtils broadcastAddressWithIp:_ip subnetMask:_subnetMask];
+    _ip                           = ip;
+    _subnetMask                   = subnetMask;
+    _networkPrefix                = [YLTCPUtils networkPrefixWithIp:_ip subnetMask:_subnetMask];
+    _broadcastAddress             = [YLTCPUtils broadcastAddressWithIp:_ip subnetMask:_subnetMask];
+    _maxConcurrentConnectionCount = 150;
   }
   return self;
 }
@@ -85,7 +86,7 @@
     NSArray *broadcastAddressParts = [_broadcastAddress componentsSeparatedByString:@"."];
 
     NSOperationQueue *queue           = [[NSOperationQueue alloc] init];
-    queue.maxConcurrentOperationCount = 100;
+    queue.maxConcurrentOperationCount = _maxConcurrentConnectionCount;
 
     // IP v4
     if (networkPrefixParts.count == 4 && networkPrefixParts.count == broadcastAddressParts.count) {
