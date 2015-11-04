@@ -111,6 +111,12 @@
                 YLTCPSocketStatus status = [socket connectWithTimeoutInterval:timeout];
 
                 if (status == YLTCPSocketStatusOpened) {
+                  if (_delegate && [_delegate respondsToSelector:@selector(tcpBroadcaster:didFoundHost:)]) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                      [_delegate tcpBroadcaster:self didFoundHost:remoteIp];
+                    });
+                  }
+
                   [availableHosts addObject:remoteIp];
                 }
               }];

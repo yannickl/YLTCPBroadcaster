@@ -26,6 +26,7 @@
 
 #import "YLTCPSocket.h"
 #import "YLTCPUtils.h"
+#import "YLTCPBroadcasterDelegate.h"
 
 /**
  * @abstract The TCP broadcaster completion block. This block has no return
@@ -117,6 +118,17 @@ typedef void (^YLTCPBroadcasterCompletionBlock) (NSArray * _Nonnull hosts);
  * @since 2.0.0
  */
 @property (nonatomic, assign) NSInteger maxConcurrentConnectionCount;
+
+#pragma mark - Managing the Delegate
+/** @name Managing the Delegate */
+
+/**
+ * @abstract The object that acts as the delegate of the receiving TCP
+ * broadcaster.
+ * @since 2.0.0
+ */
+@property (nonatomic, weak) id<YLTCPBroadcasterDelegate> _Nullable delegate;
+
 
 #pragma mark - Scanning the Network
 /** @name Scanning the Network */

@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YLTCPBroadcasterDelegate.h"
 
-@interface ViewController : UITableViewController
+@interface ViewController : UITableViewController <YLTCPBroadcasterDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *refreshButtonItem;
 
 - (IBAction)refreshAction:(id)sender;
