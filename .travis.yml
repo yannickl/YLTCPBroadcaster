@@ -1,0 +1,10 @@
+language: objective-c
+osx_image: xcode7.1
+branches:
+  only:
+    - master
+before_install:
+  - gem install xcpretty
+script:
+- set -o pipefail
+- xcodebuild -project Example/YLTCPBroadcasterSample.xcodeproj -scheme YLTCPBroadcasterSampleTests -sdk iphonesimulator -destination "id=74B65E5F-38DA-42D9-AD99-1DF06695DC54" test | xcpretty -c

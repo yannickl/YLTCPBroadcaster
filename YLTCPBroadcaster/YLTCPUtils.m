@@ -31,8 +31,7 @@
 
 @implementation YLTCPUtils
 
-+ (NSString *)localIp
-{
++ (NSString *)localIp {
   NSString *broadcastAddress = nil;
 
   struct ifaddrs *interfaces = NULL;
@@ -63,8 +62,7 @@
   return broadcastAddress;
 }
 
-+ (NSString *)localSubnetMask
-{
++ (NSString *)localSubnetMask {
   NSString *broadcastAddress = nil;
 
   struct ifaddrs *interfaces = NULL;
@@ -95,8 +93,7 @@
   return broadcastAddress;
 }
 
-+ (NSString *)networkPrefixWithIp:(NSString *)ip subnetMask:(NSString *)subnetMask
-{
++ (NSString *)networkPrefixWithIp:(NSString *)ip subnetMask:(NSString *)subnetMask {
   NSParameterAssert(ip);
   NSParameterAssert(subnetMask);
 
@@ -117,8 +114,7 @@
   return networkPrefixAddress;
 }
 
-+ (NSString *)broadcastAddressWithIp:(NSString *)ip subnetMask:(NSString *)subnetMask
-{
++ (NSString *)broadcastAddressWithIp:(NSString *)ip subnetMask:(NSString *)subnetMask {
   NSParameterAssert(ip);
   NSParameterAssert(subnetMask);
 
@@ -135,7 +131,7 @@
       networkPrefixAddress = [NSString stringWithCString:networkPrefix_address encoding:NSUTF8StringEncoding];
     }
   }
-
+  
   return networkPrefixAddress;
 }
 

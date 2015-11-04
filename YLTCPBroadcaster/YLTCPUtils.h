@@ -40,7 +40,7 @@
  * went wrong.
  * @since 1.0.0
  */
-+ (NSString *)localIp;
++ (NSString * _Nullable)localIp;
 
 /**
  * @abstract Returns the subnet mask of the current device network.
@@ -48,7 +48,7 @@
  * went wrong.
  * @since 1.0.0
  */
-+ (NSString *)localSubnetMask;
++ (NSString * _Nullable)localSubnetMask;
 
 /**
  * @abstract Compute and returns the network prefix using a given ip and
@@ -60,7 +60,7 @@
  * It returns nil if something went wrong.
  * @since 1.0.0
  */
-+ (NSString *)networkPrefixWithIp:(NSString *)ip subnetMask:(NSString *)subnetMask;
++ (NSString * _Nullable)networkPrefixWithIp:(NSString * _Nonnull)ip subnetMask:(NSString * _Nonnull)subnetMask;
 
 /**
  * @abstract Compute and returns the broadcast address using a given ip and
@@ -72,6 +72,6 @@
  * It returns nil if something went wrong.
  * @since 1.0.0
  */
-+ (NSString *)broadcastAddressWithIp:(NSString *)ip subnetMask:(NSString *)subnetMask;
++ (NSString * _Nullable)broadcastAddressWithIp:(NSString * _Nonnull)ip subnetMask:(NSString * _Nonnull)subnetMask;
 
 @end
