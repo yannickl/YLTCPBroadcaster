@@ -157,6 +157,6 @@ typedef void (^YLTCPBroadcasterCompletionBlock) (NSArray * _Nonnull hosts);
  * no host is found and/or if an error occured the returned list is empty.
  * @since 1.0.0
  */
-- (void)scanWithPort:(SInt32)port timeoutInterval:(NSTimeInterval)timeout completionHandler:(_Nonnull YLTCPBroadcasterCompletionBlock)completionBlock;
+- (void)scanWithPort:(SInt32)port timeoutInterval:(NSTimeInterval)timeout completionHandler:(YLTCPBroadcasterCompletionBlock _Nullable)completionBlock;
 
 @end
