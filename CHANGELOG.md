@@ -1,5 +1,10 @@
 ## Changelog
 
+## [Version 2.0.1](https://github.com/yannickl/YLTCPBroadcaster/releases/tag/2.0.1)
+*Released on 2019-02-24.*
+
+- [FIX] Adding the missing `<sys/time.h>` import
+
 ## [Version 2.0.0](https://github.com/yannickl/YLTCPBroadcaster/releases/tag/2.0.0)
 *Released on 2015-11-04.*
 

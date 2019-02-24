@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'YLTCPBroadcaster'
-  s.version      = '2.0.0'
+  s.version      = '2.0.1'
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
   s.summary      = 'Fast and easy-to-use network scanner to locate every host with a given open port'
   s.description  = <<-DESC
