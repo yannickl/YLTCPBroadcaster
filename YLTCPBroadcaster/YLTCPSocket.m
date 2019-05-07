@@ -122,7 +122,7 @@ const NSUInteger kYLTCPSocketDefaultTimeoutInSeconds = 2;
       // Set the timeout interval
       double timeoutDecimal = (NSInteger)timeout;
       tv.tv_sec             = timeoutDecimal;
-      tv.tv_usec            = (timeout - timeoutDecimal) * 1000;
+      tv.tv_usec            = (timeout - timeoutDecimal) * 1000 * 1000;
 
       FD_ZERO(&fdset);
       FD_SET(sockfd, &fdset);
